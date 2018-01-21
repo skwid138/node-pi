@@ -12,6 +12,8 @@ This project will likely change many times, but for now the plan will be to use 
 	* Linux [Check Out These Instructions](http://qdosmsq.dunbar-it.co.uk/blog/2013/06/noobs-for-raspberry-pi/)
 *  Copy NOOBS to the formated drive (if it unzips into a directory exclude that and onyl copy it's contents)
 *  Put the SD card in the Pi and boot it up, choose Raspbian and let it install
+*  Open terminal and run `sudo apt-get update`
+*  Then run `sudo apt-get upgrade`
 
 ### Overclocking
 [This is a very thorough guide](https://github.com/RetroPie/RetroPie-Setup/wiki/Overclocking)
@@ -31,7 +33,7 @@ Note: It is a good idea to make a backup copy of config.txt before making any ch
 
 * Once you're finsihed `ctrl x` to close the editor
 * Then press `y` to save your changes and `Enter` to close nano
-* type sudo reboot to restart the Pi
+* type `sudo reboot` to restart the Pi
 
 Note: if it does not restart use the backup copy of config.txt and then try again with lower settings
 
