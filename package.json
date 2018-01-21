@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/skwid138/node-pi/issues"
   },
-  "homepage": "https://github.com/skwid138/node-pi#readme"
+  "homepage": "https://github.com/skwid138/node-pi#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2"
+  }
 }
