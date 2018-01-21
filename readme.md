@@ -42,3 +42,4 @@ Note: if it does not restart use the backup copy of config.txt and then try agai
 
 * Open Terminal and run.`wget http://node-arm.herokuapp.com/node_latest_armhf.deb` to download Node.js
 *  Then run `sudo dpkg -i node_latest_armhf.deb` to install node
+*  Next `sudo apt-get install npm` to install NPM
