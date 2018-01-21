@@ -1,0 +1,20 @@
+{
+  "name": "node-pi",
+  "version": "1.0.0",
+  "description": "This project will likely change many times, but for now the plan will be to use the pi to manipulate hardware components **OR** as a little node box to serve up something to a client (React).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skwid138/node-pi.git"
+  },
+  "author": "Hunter Rancourt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/skwid138/node-pi/issues"
+  },
+  "homepage": "https://github.com/skwid138/node-pi#readme"
+}
