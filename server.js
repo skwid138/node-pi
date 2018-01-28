@@ -8,6 +8,8 @@ require('dotenv').config();
 
 const port = process.env.PORT || 6680;
 
+// const blinkModule = require('./modules/blink.module.js');
+
 // use body-parser
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({ extended: true }) );
