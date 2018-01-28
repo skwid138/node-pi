@@ -5,7 +5,12 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
+
 const ip = require('ip');
+
+// socket.io
+const server = require('http').Server(app);
+const io = require('socket.io')(server); //require socket.io module and pass the http object (server)
 
 const port = process.env.PORT || 6680;
 
@@ -30,3 +35,20 @@ app.use('/', indexRouter); // catch all
 app.listen(port, () => {
     console.log('Server listening on: http://' + ip.address() + ':' + port);
 }); // end listen
+
+// WebSocket Connection
+io.sockets.on('connection', function (socket) {
+
+    //static variable for current status
+    let lightvalue = 0;
+
+    //get light switch status from client
+    socket.on('light', function (data) {
+        lightvalue = data;
+        
+        if (lightvalue) {
+            //turn LED on or off, for now we will just show it in console.log
+            console.log(lightvalue); 
+        }
+    });
+});
