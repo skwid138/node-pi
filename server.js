@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
+const ip = require('ip');
 
 const port = process.env.PORT || 6680;
 
@@ -27,5 +28,5 @@ app.use('/', indexRouter); // catch all
 
 // server listening
 app.listen(port, () => {
-    console.log('Server listening on port: ', port);
+    console.log('Server listening on: http://' + ip.address() + ':' + port);
 }); // end listen
