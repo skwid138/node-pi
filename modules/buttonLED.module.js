@@ -11,11 +11,11 @@ const LED = new Gpio(4, 'out');
 const pushButton = new Gpio(17, 'in', 'both'); 
 
 //Watch for hardware interrupts on pushButton GPIO, specify callback function
-pushButton.watch(function (err, value) { 
+pushButton.watch( function (err, value) { 
     if (err) { //if an error
         console.error('There was an error', err); //output error message to console
         return;
-    }
+    } // end if
     LED.writeSync(value); //turn LED on or off depending on the button state (0 or 1)
 }); // end pushButton.watch
 
