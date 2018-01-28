@@ -1,3 +1,30 @@
 <section>
-    
+    <script>
+
+        //load socket.io-client and connect to the host that serves the page
+        var socket = io();
+
+        //when page loads
+        window.addEventListener("load", function () {
+            var lightbox = document.getElementById("light");
+
+            //add event listener for when checkbox changes
+            lightbox.addEventListener("change", function () {
+                //send button status to server (as 1 or 0)
+                socket.emit("light", Number(this.checked)); 
+            });// end change event listener
+
+        }); // end load event listener
+
+        //get button status from client
+        socket.on('light', function (data) {
+            
+            //change checkbox according to push button on Raspberry Pi
+            document.getElementById("light").checked = data;
+
+            //send push button status to back to server
+            socket.emit("light", data);
+        }); // end socket.on
+
+    </script>
 </section>
