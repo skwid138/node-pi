@@ -17,13 +17,13 @@ const LED04 = new Gpio(4, 'out'),
 const leds = [LED04, LED17, LED27, LED22, LED18, LED23, LED24, LED25];
 
 //a counter
-let indexCount = 0;
+var indexCount = 0;
 
 //variable for flowing direction
-let dir = "up";
+var dir = "up";
 
 //run the flowingLeds function every 100ms
-var flowInterval = setInterval(flowingLeds, 100);
+const flowInterval = setInterval(flowingLeds, 100);
 
 //function for flowing Leds
 function flowingLeds() {
