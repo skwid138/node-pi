@@ -31,10 +31,7 @@ const indexRouter = require('./routes/index.router.js');
 
 app.use('/', indexRouter); // catch all
 
-// server listening
-app.listen(port, () => {
-    console.log('Server listening on: http://' + ip.address() + ':' + port);
-}); // end listen
+
 
 // WebSocket Connection
 io.sockets.on('connection', function (socket) {
@@ -45,10 +42,16 @@ io.sockets.on('connection', function (socket) {
     //get light switch status from client
     socket.on('light', function (data) {
         lightvalue = data;
-        
+
         if (lightvalue) {
             //turn LED on or off, for now we will just show it in console.log
-            console.log(lightvalue); 
+            console.log('lightvalue ', lightvalue);
         }
     });
 });
+
+
+// server listening
+app.listen(port, () => {
+    console.log('Server listening on: http://' + ip.address() + ':' + port);
+}); // end listen
