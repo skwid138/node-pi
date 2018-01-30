@@ -12,8 +12,6 @@ myApp.controller('HomeController', function (  ) {
         vm.socket = io();
 
 
-        vm.light = 0;
-
         vm.lightSwitch = () => {
             console.log('in lightSwitch');
 
