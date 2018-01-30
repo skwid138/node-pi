@@ -52,7 +52,7 @@ io.on('connection', function (socket) {
     console.log('made socket connection');
 
     //static variable for current status
-    let lightValue = 0;
+    var lightValue = 0;
 
     pushButton.watch(function (err, value) { //Watch for hardware interrupts on pushButton
         if (err) { //if an error
