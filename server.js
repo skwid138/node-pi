@@ -37,21 +37,44 @@ const server = app.listen(port, () => {
 const socket = require('socket.io')
 const io = socket(server); //require socket.io module and pass the http object (server)
 
+
+
+//include onoff to interact with the GPIO
+var Gpio = require('onoff').Gpio,
+//use GPIO pin 4 as output
+LED = new Gpio(4, 'out'),
+//use GPIO pin 17 as input, and 'both' button presses, and releases should be handled
+pushButton = new Gpio(17, 'in', 'both'); 
+
+
 // WebSocket Connection
 io.on('connection', function (socket) {
-    console.log('made sockect connection');
-    
+    console.log('made socket connection');
 
     //static variable for current status
-    let lightvalue = 0;
+    let lightValue = 0;
+
+    pushButton.watch(function (err, value) { //Watch for hardware interrupts on pushButton
+        if (err) { //if an error
+            console.error('There was an error', err); //output error message to console
+            return;
+        } // end if error
+        lightValue = value;
+        socket.emit('light', lightValue); //send button status to client
+    }); // end pushButton.watch
 
     //get light switch status from client
     socket.on('light', function (data) {
-        lightvalue = data;
+        console.log('socket.on', data);
+        
+        lightValue = data;
 
-        if (lightvalue) {
-            //turn LED on or off, for now we will just show it in console.log
-            console.log('lightvalue ', lightvalue);
-        }
-    });
+        //only change LED if status has changed
+        if (lightValue != LED.readSync()) { 
+            //turn LED on or off
+            LED.writeSync(lightValue); 
+        } // end if
+
+    }); // end socket.on
+    
 }); // end io.sockets.on
