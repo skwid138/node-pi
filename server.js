@@ -8,10 +8,6 @@ require('dotenv').config();
 
 const ip = require('ip');
 
-// socket.io
-const server = require('http').Server(app);
-const io = require('socket.io')(server); //require socket.io module and pass the http object (server)
-
 const port = process.env.PORT || 6680;
 
 // const blinkModule = require('./modules/blink.module.js');
@@ -32,9 +28,19 @@ const indexRouter = require('./routes/index.router.js');
 app.use('/', indexRouter); // catch all
 
 
+// server listening
+const server = app.listen(port, () => {
+    console.log('Server listening on: http://' + ip.address() + ':' + port);
+}); // end listen
+
+// socket.io
+const socket = require('socket.io')
+const io = socket(server); //require socket.io module and pass the http object (server)
 
 // WebSocket Connection
-io.sockets.on('connection', function (socket) {
+io.on('connection', function (socket) {
+    console.log('made sockect connection');
+    
 
     //static variable for current status
     let lightvalue = 0;
@@ -48,10 +54,4 @@ io.sockets.on('connection', function (socket) {
             console.log('lightvalue ', lightvalue);
         }
     });
-});
-
-
-// server listening
-app.listen(port, () => {
-    console.log('Server listening on: http://' + ip.address() + ':' + port);
-}); // end listen
+}); // end io.sockets.on
