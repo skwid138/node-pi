@@ -54,17 +54,23 @@ io.on('connection', function (socket) {
     //static variable for current status
     var lightValue = 0;
 
-    pushButton.watch(function (err, value) { //Watch for hardware interrupts on pushButton
-        if (err) { //if an error
-            console.error('There was an error', err); //output error message to console
+    //Watch for hardware interrupts on pushButton
+    pushButton.watch(function (err, value) {
+
+        //if an error
+        if (err) {
+            //output error message to console
+            console.error('There was an error', err);
             return;
         } // end if error
+
         lightValue = value;
+        
         socket.emit('light', lightValue); //send button status to client
     }); // end pushButton.watch
 
     //get light switch status from client
-    socket.on('light', function (data) {
+    sockets.on('light', function (data) {
         console.log('socket.on', data);
         
         lightValue = data;
