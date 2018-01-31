@@ -23,7 +23,7 @@ myApp.controller('HomeController', function (  ) {
 
         //get button status from client
         vm.socket.on('light', function (data) {
-            console.log('in socket.on');
+            console.log('in socket.on', data);
 
             //change checkbox according to push button on Raspberry Pi
             vm.light = data;
