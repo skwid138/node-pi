@@ -65,12 +65,12 @@ io.on('connection', function (socket) {
         } // end if error
 
         lightValue = value;
-        
+
         socket.emit('light', lightValue); //send button status to client
     }); // end pushButton.watch
 
     //get light switch status from client
-    sockets.on('light', function (data) {
+    socket.on('light', function (data) {
         console.log('socket.on', data);
         
         lightValue = data;
@@ -82,5 +82,12 @@ io.on('connection', function (socket) {
         } // end if
 
     }); // end socket.on
-    
 }); // end io.sockets.on
+
+//on ctrl+c
+process.on('SIGINT', function () {
+    LED.writeSync(0); // Turn LED off
+    LED.unexport(); // Unexport LED GPIO to free resources
+    pushButton.unexport(); // Unexport Button GPIO to free resources
+    process.exit(); //exit completely
+}); // end process.on
