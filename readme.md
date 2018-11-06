@@ -1,6 +1,6 @@
 ## Node Pi - Running Node.js on Raspberry Pi 3
 
-This project will likely change many times, but for now the plan will be to use the pi to manipulate hardware components **OR** as a little node box to serve up something to a client (React). 
+This project will likely change many times, but for now the plan will be to use the pi to manipulate hardware components **OR** as a little node box to serve up something to a client (React).
 
 ### OS Setup
 * [Download NOOBS](https://www.raspberrypi.org/downloads/)
@@ -22,7 +22,7 @@ Note: It is a good idea to make a backup copy of config.txt before making any ch
 
 * Open terminal and enter `sudo nano /boot/config.txt` (this opens the config file in the command line editor)
 * find `arm_freq`, remove the # and update it from 800 to 1250 (or higher)
-* move to the bottom of the file and add 
+* move to the bottom of the file and add
 > `total_mem=1024`
 > `gpu_freq=500`
 > `core_freq=500`
@@ -43,3 +43,41 @@ Note: if it does not restart use the backup copy of config.txt and then try agai
 * Open Terminal and run.`wget http://node-arm.herokuapp.com/node_latest_armhf.deb` to download Node.js
 *  Then run `sudo dpkg -i node_latest_armhf.deb` to install node
 *  Next `sudo apt-get install npm` to install NPM
+
+
+## DHT11
+
+Temperature and Humidity capturing device
+
+### Perquisites
+
+#### [bcm2835 C Library](http://www.airspayce.com/mikem/bcm2835/)
+
+  - [Download the latest version](http://www.airspayce.com/mikem/bcm2835/bcm2835-1.57.tar.gz)
+  - `cd ~/Downloads`
+  - `tar zxvf bcm2835-1.xx.tar.gz`
+  - `mv bcm2835-1.xx ~/Public`
+  - `cd ~/Public/bcm2835-1.xx`
+  - `./configure`
+  - `make`
+  - `sudo make check`
+  - `sudo make install`
+  - `npm install node-dht-sensor`
+
+  ## Helpful Commands
+
+  Update Package Lists - `sudo apt-get update`
+
+  Upgrade Packages - `sudo apt-get upgrade`
+
+  Clean up Packages - `sudo apt-get clean`
+
+  Remove unused Packages - `sudo apt autoremove`
+
+  Update OS - `sudo apt-get dist-upgrade`
+
+  Raspberry Pi config - `sudo raspi-config`
+
+  Shutdown  - `sudo halt`
+
+  Reboot - `sudo reboot`
